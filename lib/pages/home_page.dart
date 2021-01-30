@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_booking_app_design/content.dart';
 import 'package:travel_booking_app_design/models/location_model.dart';
+import 'package:travel_booking_app_design/pages/location_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -144,67 +145,77 @@ class HomePage extends StatelessWidget {
               itemCount: recentlyViewed.length,
               itemBuilder: (context, index) {
                 Location loc = recentlyViewed[index];
-                return Container(
-                  height: double.infinity,
-                  width: 220,
-                  margin: EdgeInsets.only(
-                    right: 14,
-                    left: index == 0 ? 24 : 0,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
-                      image: NetworkImage(loc.imageUrl),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.bottomCenter,
-                      colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(.3),
-                        BlendMode.darken,
+                return GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LocationPage(
+                        location: loc,
                       ),
                     ),
                   ),
-                  padding: EdgeInsets.all(8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 4,
+                  child: Container(
+                    height: double.infinity,
+                    width: 220,
+                    margin: EdgeInsets.only(
+                      right: 14,
+                      left: index == 0 ? 24 : 0,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(5),
+                      image: DecorationImage(
+                        image: NetworkImage(loc.imageUrl),
+                        fit: BoxFit.cover,
+                        alignment: Alignment.bottomCenter,
+                        colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(.3),
+                          BlendMode.darken,
                         ),
-                        alignment: Alignment.centerLeft,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.star,
-                              color: Colors.white,
-                              size: 15,
-                            ),
-                            SizedBox(
-                              width: 4,
-                            ),
-                            Text(
-                              loc.rating.toString(),
-                              style: TextStyle(
+                      ),
+                    ),
+                    padding: EdgeInsets.all(8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 4,
+                          ),
+                          alignment: Alignment.centerLeft,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.star,
                                 color: Colors.white,
-                                fontSize: 12,
+                                size: 15,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Text(
+                                loc.rating.toString(),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Text(
-                        loc.title,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'OpenSans',
-                          fontWeight: FontWeight.bold,
+                        Text(
+                          loc.title,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
@@ -319,29 +330,37 @@ class HomePage extends StatelessWidget {
               itemCount: discover.length,
               itemBuilder: (context, index) {
                 Location loc = discover[index];
-                return Container(
-                  height: double.infinity,
-                  width: 150,
-                  margin: EdgeInsets.only(
-                    left: index == 0 ? 24 : 8,
-                  ),
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
-                      image: NetworkImage(loc.imageUrl),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(.2), BlendMode.darken),
+                return GestureDetector(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (contxt) => LocationPage(
+                                location: loc,
+                              ))),
+                  child: Container(
+                    height: double.infinity,
+                    width: 150,
+                    margin: EdgeInsets.only(
+                      left: index == 0 ? 24 : 8,
                     ),
-                  ),
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    loc.title,
-                    style: TextStyle(
-                      fontFamily: 'OpenSans',
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      image: DecorationImage(
+                        image: NetworkImage(loc.imageUrl),
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.mode(
+                            Colors.black.withOpacity(.2), BlendMode.darken),
+                      ),
+                    ),
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      loc.title,
+                      style: TextStyle(
+                        fontFamily: 'OpenSans',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 );
