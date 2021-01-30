@@ -3,8 +3,10 @@
 
 
 ### Todo's 
-- Individual location pages
 - Maps page
 
-### Home Screen
-![cover image](/github_images/home.png)
+### App Screens
+
+Home Page             |  Location Page
+:-------------------------:|:-------------------------:
+![](/github_images/home.png)  |  ![](/github_images/location_page.png)
